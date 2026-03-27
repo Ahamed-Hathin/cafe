@@ -1,0 +1,13 @@
+{
+  "name": "freddo-bistro-coffee-root",
+  "version": "1.0.0",
+  "scripts": {
+    "server": "npm start --prefix backend",
+    "client": "npm run dev --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "seed": "node backend/seed.js"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
