@@ -9,7 +9,7 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import api from '../api/axios';
 import { useAuth } from '../context/AuthContext';
 import toast from 'react-hot-toast';
-import { requestNotificationPermission, onMessageListener } from './firebase';
+import { requestNotificationPermission, onMessageListener } from '../config/firebase';
 
 export default function AdminDashboard() {
   const { admin, logout } = useAuth();
@@ -207,7 +207,6 @@ export default function AdminDashboard() {
 
       {/* Main Content */}
       <main className="main-content flex-grow-1" style={{ marginLeft: '260px', backgroundColor: '#F5F3EF', minHeight: '100vh' }}>
-        {/* Top Navbar */}
         <nav className="navbar navbar-expand-lg navbar-light bg-white border-bottom px-4 py-3 sticky-top shadow-sm">
           <div className="container-fluid p-0">
             <span className="navbar-brand m-0 fw-bold text-dark text-capitalize">{activeTab} Page</span>
@@ -235,7 +234,6 @@ export default function AdminDashboard() {
 
           {!loading && (
             <>
-              {/* DASHBOARD PAGE */}
               {activeTab === 'dashboard' && (
                 <div className="fade-in">
                   <div className="row g-4 mb-5">
@@ -257,7 +255,6 @@ export default function AdminDashboard() {
                     ))}
                   </div>
 
-                  {/* Trends Chart */}
                   <div className="card border-0 shadow-sm rounded-4 p-4 mb-4">
                     <div className="d-flex justify-content-between align-items-center mb-4">
                       <h5 className="m-0 fw-bold text-dark d-flex align-items-center gap-2">
@@ -289,7 +286,6 @@ export default function AdminDashboard() {
                 </div>
               )}
 
-              {/* ORDERS PAGE */}
               {activeTab === 'orders' && (
                 <div className="fade-in card border-0 shadow-sm rounded-4 p-0 overflow-hidden">
                   <div className="table-responsive">
@@ -345,10 +341,8 @@ export default function AdminDashboard() {
                 </div>
               )}
 
-              {/* MENU PAGE - Split Layout */}
               {activeTab === 'menu' && (
                 <div className="row g-4 fade-in">
-                  {/* Left: Form */}
                   <div className="col-lg-4">
                     <div className="card border-0 shadow-sm rounded-4 p-4 sticky-top" style={{ top: '100px', zIndex: 10 }}>
                       <h5 className="fw-bold mb-4 text-dark">{editingItem ? 'Edit Menu Item' : 'Create New Item'}</h5>
@@ -415,7 +409,6 @@ export default function AdminDashboard() {
                       </Form>
                     </div>
                   </div>
-                  {/* Right: Table */}
                   <div className="col-lg-8">
                     <div className="card border-0 shadow-sm rounded-4 p-0 overflow-hidden">
                       <Table hover className="m-0 align-middle">
@@ -458,7 +451,6 @@ export default function AdminDashboard() {
                 </div>
               )}
 
-              {/* MESSAGES PAGE */}
               {activeTab === 'messages' && (
                 <div className="fade-in card border-0 shadow-sm rounded-4 p-0 overflow-hidden">
                   <div className="table-responsive">
@@ -494,18 +486,15 @@ export default function AdminDashboard() {
         .btn-primary { background-color: #D3543F; border-color: #D3543F; }
         .btn-primary:hover { background-color: #BA4735; border-color: #BA4735; }
         
-        /* Sidebar Styles */
         .sidebar { z-index: 1000; box-shadow: 10px 0 30px rgba(0,0,0,0.1); }
         .nav-link-btn { transition: all 0.2s ease; }
         .active-tab { background-color: rgba(211, 84, 63, 0.15); color: #D3543F !important; }
         .inactive-tab { color: #8A8A8A; background: transparent; }
         .inactive-tab:hover { background-color: rgba(255,255,255,0.05); color: #FFF; }
         
-        /* Animation */
         .fade-in { animation: fadeIn 0.4s ease-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
-        /* Misc */
         .highlight-row { background-color: rgba(211, 84, 63, 0.05) !important; position: relative; }
         .highlight-row::after { content: 'NEW'; position: absolute; left: 0; top: 0; background: #D3543F; color: white; font-size: 8px; padding: 2px 5px; font-weight: bold; border-bottom-right-radius: 4px; }
         .spin { animation: spin 1s linear infinite; }

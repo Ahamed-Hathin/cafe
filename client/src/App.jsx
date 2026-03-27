@@ -8,8 +8,6 @@ import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import MenuPage from './pages/MenuPage';
 import ContactPage from './pages/ContactPage';
-import LoginPage from './admin/LoginPage';
-import AdminDashboard from './admin/AdminDashboard';
 import { useEffect } from 'react';
 
 // Route helper to scroll to top on every navigation
@@ -26,24 +24,19 @@ function ScrollToTop() {
   return null;
 }
 
-// Protected Route Component
-function ProtectedRoute({ children }) {
-  const { isLoggedIn } = useAuth();
-  return isLoggedIn ? children : <Navigate to="/login" replace />;
-}
 
 // Main Layout Wrapper
 function Layout({ children }) {
   const location = useLocation();
-  const isAdminPage = location.pathname.startsWith('/admin') || location.pathname === '/login';
+  const isLoginPage = location.pathname === '/login'; // Still might want simple login for users? Actually No, admin is gone.
 
   return (
     <div className="d-flex flex-column min-vh-100 bg-light-cream">
-      {!isAdminPage && <Navbar />}
+      <Navbar />
       <main className="flex-grow-1">
         {children}
       </main>
-      {!isAdminPage && <Footer />}
+      <Footer />
     </div>
   );
 }
@@ -56,17 +49,6 @@ function AppRoutes() {
         <Route path="/" element={<HomePage />} />
         <Route path="/menu" element={<MenuPage />} />
         <Route path="/contact" element={<ContactPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        
-        {/* Admin Secret Route */}
-        <Route 
-          path="/admin" 
-          element={
-            <ProtectedRoute>
-              <AdminDashboard />
-            </ProtectedRoute>
-          } 
-        />
 
         {/* Catch all redirect to home */}
         <Route path="*" element={<Navigate to="/" replace />} />

@@ -10,9 +10,7 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
-// Check if Firebase config is provided
 const isFirebaseConfigured = !!firebaseConfig.projectId;
-
 let app, messaging;
 
 if (isFirebaseConfigured) {
@@ -31,10 +29,7 @@ export const requestNotificationPermission = async () => {
       const token = await getToken(messaging, { 
         vapidKey: import.meta.env.VITE_FIREBASE_VAPID_KEY
       });
-      if (token) {
-        console.log('FCM Token:', token);
-        return token;
-      }
+      return token;
     }
   } catch (error) {
     console.error('Error getting notification permission:', error);

@@ -4,7 +4,8 @@
   "scripts": {
     "server": "npm start --prefix backend",
     "client": "npm run dev --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "admin": "npm run dev --prefix admin",
+    "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run admin\"",
     "seed": "node backend/seed.js"
   },
   "devDependencies": {
