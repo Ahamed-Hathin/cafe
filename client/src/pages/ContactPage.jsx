@@ -12,7 +12,7 @@ export default function ContactPage() {
 
     setLoading(true);
     try {
-      await api.post('/contact', form);
+      await api.post('/api/contact', form);
       toast.success('Message received! We\'ll be in touch soon. ☕');
       setForm({ name: '', phone: '', message: '' });
     } catch {

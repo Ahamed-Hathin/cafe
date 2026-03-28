@@ -200,7 +200,7 @@ export default function HomePage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    api.get('/menu').then(({ data }) => {
+    api.get('/api/menu').then(({ data }) => {
       setItems(data.data?.slice(0, 3) || []);
       setLoading(false);
     }).catch(() => setLoading(false));

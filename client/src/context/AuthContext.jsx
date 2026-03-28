@@ -10,7 +10,7 @@ export function AuthProvider({ children }) {
   });
 
   const login = async (username, password) => {
-    const { data } = await api.post('/auth/login', { username, password });
+    const { data } = await api.post('/api/auth/login', { username, password });
     localStorage.setItem('freddo_token', data.token);
     localStorage.setItem('freddo_admin', JSON.stringify(data.admin));
     setAdmin(data.admin);

@@ -16,7 +16,7 @@ export default function MenuPage() {
 
   useEffect(() => {
     setLoading(true);
-    api.get('/menu')
+    api.get('/api/menu')
       .then(({ data }) => {
         const all = data.data || [];
         setItems(all);

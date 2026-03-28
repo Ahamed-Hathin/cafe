@@ -30,7 +30,7 @@ export default function OrderModal({ show, onHide, item }) {
         totalPrice: item.price * Number(form.quantity)
       };
 
-      await api.post('/orders', payload);
+      await api.post('/api/orders', payload);
       toast.success('Order placed successfully! ☕');
       setForm({ customerName: '', phone: '', quantity: 1 });
       onHide();

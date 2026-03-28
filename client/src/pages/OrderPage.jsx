@@ -18,7 +18,7 @@ export default function OrderPage() {
 
     setLoading(true);
     try {
-      const { data } = await api.post('/orders', {
+      const { data } = await api.post('/api/orders', {
         ...form,
         items: cart.map(i => ({ name: i.name, quantity: i.quantity, price: i.price })),
         totalPrice: cartTotal,
