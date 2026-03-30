@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { SlidersHorizontal } from 'lucide-react';
 import api from '../api/axios';
 import MenuCard from '../components/MenuCard';
 import OrderModal from '../components/OrderModal';
@@ -9,10 +11,10 @@ export default function MenuPage() {
   const [error, setError]           = useState(null);
   const [activeCategory, setActive] = useState('All');
   const [categories, setCategories] = useState(['All']);
-  
+
   // Order Modal State
   const [showOrderModal, setShowOrderModal] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedItem, setSelectedItem]     = useState(null);
 
   useEffect(() => {
     setLoading(true);
@@ -37,25 +39,45 @@ export default function MenuPage() {
     : items.filter((i) => i.category === activeCategory);
 
   return (
-    <div className="min-vh-100 bg-light-cream pt-5 mt-5">
+    <div className="min-h-screen bg-light-cream pt-28 md:pt-36 pb-20 overflow-x-hidden">
       {/* Order Modal */}
-      <OrderModal 
-        show={showOrderModal} 
-        onHide={() => setShowOrderModal(false)} 
-        item={selectedItem} 
+      <OrderModal
+        show={showOrderModal}
+        onHide={() => setShowOrderModal(false)}
+        item={selectedItem}
       />
 
+      <div className="container mx-auto px-4">
 
+        {/* Page Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-center mb-12 md:mb-16"
+        >
+          <span className="text-secondary font-black text-[10px] uppercase tracking-[0.3em] mb-3 block">
+            Freshly Crafted
+          </span>
+          <h1 className="font-playfair text-4xl md:text-6xl font-black text-primary leading-tight mb-4">
+            Our Menu
+          </h1>
+          <div className="w-16 h-1.5 bg-accent mx-auto rounded-full" />
+        </motion.div>
 
-      <div className="container pb-5">
-        {/* Category Selection Filter */}
-        <div className="d-flex flex-wrap justify-content-center gap-2 mb-5 fade-in-up" style={{ animationDelay: '0.1s' }}>
+        {/* Category Filter Pills */}
+        <div className="flex items-center gap-2 md:gap-3 flex-wrap justify-center mb-10 md:mb-14">
+          <div className="flex items-center gap-2 text-dark/40 mr-1">
+            <SlidersHorizontal size={14} />
+            <span className="text-[10px] font-black uppercase tracking-widest hidden sm:block">Filter</span>
+          </div>
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActive(cat)}
-              className={`btn btn-sm rounded-pill px-4 py-2 fw-bold text-uppercase tracking-wide transition-all shadow-sm ${
-                activeCategory === cat ? 'btn-primary' : 'btn-white bg-white text-secondary hover-bg-light'
+              className={`h-10 md:h-11 px-5 md:px-6 rounded-full text-[10px] font-black uppercase tracking-widest transition-all active:scale-95 shadow-sm ${
+                activeCategory === cat
+                  ? 'bg-primary text-white shadow-primary/20 shadow-md'
+                  : 'bg-white text-dark/60 hover:text-primary border border-black/5'
               }`}
             >
               {cat}
@@ -63,54 +85,61 @@ export default function MenuPage() {
           ))}
         </div>
 
-        {/* Error Handling */}
+        {/* Error State */}
         {error && (
-            <div className="text-center py-5 bg-white rounded-4 shadow-sm my-5">
-                <div className="fs-1 mb-4 text-primary opacity-25">❌</div>
-                <h3 className="fw-bold mb-3">{error}</h3>
-                <button onClick={() => window.location.reload()} className="btn btn-primary rounded-pill px-5 py-2">Retry</button>
-            </div>
+          <div className="text-center py-20 bg-white rounded-[40px] shadow-sm my-10 px-8">
+            <div className="text-6xl mb-6 opacity-20">❌</div>
+            <h3 className="font-playfair text-2xl font-bold text-primary mb-4">{error}</h3>
+            <button
+              onClick={() => window.location.reload()}
+              className="h-12 px-10 bg-primary text-white text-xs font-black uppercase tracking-widest rounded-full hover:bg-secondary transition-all shadow-md active:scale-95"
+            >
+              Retry
+            </button>
+          </div>
         )}
 
-        {/* Main Grid */}
-        <div className="position-relative">
-            {loading ? (
-                <div className="d-flex flex-column align-items-center justify-content-center py-5 my-5">
-                    <div className="spinner-border text-primary" style={{width: '3rem', height: '3rem'}} role="status"></div>
-                    <span className="mt-3 text-secondary text-uppercase fw-bold tracking-widest fs-small">Curating items...</span>
-                    
-                    <div className="row g-4 w-100 mt-5">
-                        {[1,2,3,4].map(i => (
-                            <div key={i} className="col-lg-3 col-md-6 col-sm-12">
-                                <div className="card h-100 placeholder-glow shadow-sm border-0">
-                                    <div className="placeholder col-12" style={{height: '240px'}}></div>
-                                    <div className="card-body p-4">
-                                        <h5 className="placeholder col-8 mb-3"></h5>
-                                        <p className="placeholder col-4 mb-4"></p>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
+        {/* Loading Skeleton */}
+        {loading && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+            {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+              <div key={i} className="bg-white rounded-[32px] overflow-hidden animate-pulse">
+                <div className="aspect-[4/3] bg-primary/5" />
+                <div className="p-6">
+                  <div className="h-5 w-3/4 bg-primary/5 mx-auto rounded-full mb-4" />
+                  <div className="h-4 w-1/3 bg-primary/5 mx-auto rounded-full mb-8" />
+                  <div className="h-11 w-full bg-primary/5 rounded-full" />
                 </div>
-            ) : (
-                <div className="row g-4 g-lg-5">
-                    {filtered.map((item, i) => (
-                        <div key={item._id} className="col-lg-3 col-md-4 col-sm-6 col-12 fade-in-up" style={{ animationDelay: `${(i % 10) * 0.1}s` }}>
-                            <MenuCard item={item} onOrder={handleOrderClick} />
-                        </div>
-                    ))}
-                </div>
-            )}
-        </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Menu Grid */}
+        {!loading && !error && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+            {filtered.map((item, i) => (
+              <motion.div
+                key={item._id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: (i % 8) * 0.05 }}
+              >
+                <MenuCard item={item} onOrder={handleOrderClick} />
+              </motion.div>
+            ))}
+          </div>
+        )}
 
         {/* Empty State */}
-        {!loading && filtered.length === 0 && !error && (
-            <div className="text-center py-5 my-5">
-                <div className="fs-1 mb-3 text-secondary opacity-25">☕</div>
-                <h2 className="fw-bold text-dark mb-2">Coming Soon</h2>
-                <p className="text-secondary max-w-sm mx-auto">We're updating our signature selections. Check back shortly!</p>
-            </div>
+        {!loading && !error && filtered.length === 0 && (
+          <div className="text-center py-24">
+            <div className="text-6xl mb-6 opacity-20">☕</div>
+            <h2 className="font-playfair text-3xl font-bold text-primary mb-3">Coming Soon</h2>
+            <p className="text-dark/50 max-w-sm mx-auto">
+              We're perfecting our signature selections. Check back shortly!
+            </p>
+          </div>
         )}
       </div>
     </div>

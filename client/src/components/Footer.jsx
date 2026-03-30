@@ -8,31 +8,31 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="footer-premium pt-5 pb-3">
-      <div className="container pt-5">
-        <div className="row g-4 mb-5">
+    <footer className="relative bg-gradient-to-b from-[#2C1810] to-[#1a0f0a] text-white pt-20 pb-8 overflow-hidden">
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent to-transparent opacity-30" />
+      
+      <div className="container mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* 1. BRAND SECTION */}
-          <div className="col-lg-3 col-md-6">
-            <div className="mb-4">
-              <div className="d-flex align-items-center gap-2 mb-3">
-                <Coffee className="text-accent" size={28} />
-                <span className="h4 fw-bold text-white mb-0 tracking-tighter">Freddo Bistro</span>
-              </div>
-              <p className="text-white-50 small mb-4 font-playfair italic">
-                Crafted coffee experience, roasting memories one cup at a time.
-              </p>
-              <div className="badge bg-accent bg-opacity-10 text-accent border border-accent border-opacity-25 px-3 py-2 rounded-pill small tracking-widest">
-                EST. 1999
-              </div>
+          <div className="flex flex-col items-center md:items-start text-center md:text-left">
+            <div className="flex items-center gap-2 mb-4">
+              <Coffee className="text-accent" size={32} />
+              <span className="font-playfair text-2xl font-bold tracking-tighter text-white">Freddo Bistro</span>
+            </div>
+            <p className="text-white/60 text-sm mb-6 font-playfair italic max-w-xs">
+              Crafted coffee experience, roasting memories one cup at a time.
+            </p>
+            <div className="inline-block bg-accent/10 text-accent border border-accent/25 px-4 py-2 rounded-full text-xs font-black uppercase tracking-[0.2em]">
+              EST. 1999
             </div>
           </div>
 
           {/* 2. QUICK LINKS */}
-          <div className="col-lg-3 col-md-6">
-            <h6 className="text-white text-uppercase fw-bold tracking-widest mb-4 small border-start border-accent border-3 ps-3">
+          <div className="flex flex-col items-center md:items-start text-center md:text-left">
+            <h6 className="text-white text-[10px] font-black uppercase tracking-[0.2em] mb-6 md:border-l-2 md:border-accent md:pl-3 w-full">
               Explore
             </h6>
-            <nav className="nav flex-column gap-2">
+            <nav className="flex flex-col gap-4">
               {[
                 ['/', 'Home'],
                 ['/menu', 'Menu Selections'],
@@ -42,9 +42,9 @@ export default function Footer() {
                 <Link 
                   key={path} 
                   to={path} 
-                  className="footer-link d-flex align-items-center gap-2 text-white-50 text-decoration-none transition-all"
+                  className="group flex items-center justify-center md:justify-start gap-2 text-white/60 text-sm hover:text-accent transition-colors"
                 >
-                  <ChevronRight size={14} className="link-arrow" />
+                  <ChevronRight size={14} className="opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all text-accent" />
                   {label}
                 </Link>
               ))}
@@ -52,35 +52,35 @@ export default function Footer() {
           </div>
 
           {/* 3. CONTACT INFO */}
-          <div className="col-lg-3 col-md-6">
-            <h6 className="text-white text-uppercase fw-bold tracking-widest mb-4 small border-start border-accent border-3 ps-3">
+          <div className="flex flex-col items-center md:items-start text-center md:text-left">
+            <h6 className="text-white text-[10px] font-black uppercase tracking-[0.2em] mb-6 md:border-l-2 md:border-accent md:pl-3 w-full">
               Get in Touch
             </h6>
-            <div className="d-flex flex-column gap-3 text-white-50 small">
-              <div className="d-flex gap-3 align-items-start">
-                <MapPin size={18} className="text-accent flex-shrink-0" />
-                <span>77 5-36 , west street, Trichy to dindigul road, polangulathupatti, Ammapettai, Trichy, Tamil Nadu 620009</span>
+            <div className="flex flex-col gap-4 text-white/60 text-sm">
+              <div className="flex gap-3 items-start justify-center md:justify-start">
+                <MapPin size={18} className="text-accent shrink-0 mt-0.5" />
+                <span className="max-w-[200px]">77 5-36, West Street, Trichy to Dindigul Road, Ammapettai, Trichy 620009</span>
               </div>
-              <div className="d-flex gap-3 align-items-center">
-                <Phone size={18} className="text-accent flex-shrink-0" />
+              <div className="flex gap-3 items-center justify-center md:justify-start">
+                <Phone size={18} className="text-accent shrink-0" />
                 <span>+91 98765 43210</span>
               </div>
-              <div className="d-flex gap-3 align-items-center">
-                <Mail size={18} className="text-accent flex-shrink-0" />
+              <div className="flex gap-3 items-center justify-center md:justify-start">
+                <Mail size={18} className="text-accent shrink-0" />
                 <span>hello@freddobistro.com</span>
               </div>
             </div>
           </div>
 
           {/* 4. SOCIAL MEDIA */}
-          <div className="col-lg-3 col-md-6">
-            <h6 className="text-white text-uppercase fw-bold tracking-widest mb-4 small border-start border-accent border-3 ps-3">
+          <div className="flex flex-col items-center md:items-start text-center md:text-left">
+            <h6 className="text-white text-[10px] font-black uppercase tracking-[0.2em] mb-6 md:border-l-2 md:border-accent md:pl-3 w-full">
               Follow Us
             </h6>
-            <p className="text-white-50 small mb-4">
+            <p className="text-white/60 text-sm mb-6 max-w-[200px]">
               Stay updated with our latest blends and events.
             </p>
-            <div className="d-flex gap-3">
+            <div className="flex gap-4">
               {[
                 { icon: Instagram, label: 'Instagram' },
                 { icon: Facebook, label: 'Facebook' },
@@ -89,10 +89,10 @@ export default function Footer() {
                 <a 
                   key={social.label} 
                   href="#" 
-                  className="social-icon-btn d-flex align-items-center justify-content-center border border-white border-opacity-10 rounded-circle transition-all"
+                  className="w-10 h-10 flex items-center justify-center bg-white/5 border border-white/10 rounded-full hover:bg-accent hover:border-accent group hover:-translate-y-1 transition-all"
                   aria-label={social.label}
                 >
-                  <social.icon size={18} className="text-white-50" />
+                  <social.icon size={18} className="text-white/60 group-hover:text-primary transition-colors" />
                 </a>
               ))}
             </div>
@@ -100,85 +100,16 @@ export default function Footer() {
         </div>
 
         {/* COPYRIGHT SECTION */}
-        <div className="border-top border-white border-opacity-10 pt-4 mt-5">
-          <div className="row align-items-center">
-            <div className="col-md-6 text-center text-md-start mb-3 mb-md-0">
-              <p className="text-white-50 small mb-0 opacity-75">
-                © {currentYear} Freddo Bistro Coffee. All rights reserved.
-              </p>
-            </div>
-            <div className="col-md-6 text-center text-md-end">
-              <div className="d-flex gap-4 justify-content-center justify-content-md-end small">
-                <span className="text-white-50 opacity-50 cursor-pointer hover-accent transition-all">Privacy Policy</span>
-                <span className="text-white-50 opacity-50 cursor-pointer hover-accent transition-all">Terms of Service</span>
-              </div>
-            </div>
+        <div className="border-t border-white/10 pt-8 mt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-white/40 text-[10px] md:text-xs font-medium text-center md:text-left uppercase tracking-widest">
+            © {currentYear} Freddo Bistro Coffee. All rights reserved.
+          </p>
+          <div className="flex gap-6 text-[10px] md:text-xs font-medium uppercase tracking-widest text-white/40">
+            <span className="cursor-pointer hover:text-accent transition-colors">Privacy Policy</span>
+            <span className="cursor-pointer hover:text-accent transition-colors">Terms of Service</span>
           </div>
         </div>
       </div>
-
-      <style dangerouslySetInnerHTML={{ __html: `
-        .footer-premium {
-          background: linear-gradient(to bottom, #2C1810, #1a0f0a);
-          color: #fff;
-          position: relative;
-          overflow: hidden;
-        }
-
-        .footer-premium::before {
-          content: '';
-          position: absolute;
-          top: 0; left: 0; right: 0;
-          height: 3px;
-          background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
-          opacity: 0.3;
-        }
-
-        .text-accent { color: var(--accent-color) !important; }
-        .bg-accent { background-color: var(--accent-color) !important; }
-        
-        .footer-link {
-          font-size: 0.9rem;
-          padding: 2px 0;
-        }
-
-        .footer-link:hover {
-          color: var(--accent-color) !important;
-          padding-left: 8px;
-        }
-
-        .link-arrow {
-          opacity: 0;
-          transform: translateX(-10px);
-          transition: all 0.3s ease;
-        }
-
-        .footer-link:hover .link-arrow {
-          opacity: 1;
-          transform: translateX(0);
-        }
-
-        .social-icon-btn {
-          width: 40px;
-          height: 40px;
-          background: rgba(255, 255, 255, 0.03);
-        }
-
-        .social-icon-btn:hover {
-          background: var(--accent-color);
-          transform: translateY(-3px) scale(1.1);
-          border-color: var(--accent-color) !important;
-        }
-
-        .social-icon-btn:hover svg {
-          color: #2C1810 !important;
-        }
-
-        .hover-accent:hover { color: var(--accent-color) !important; }
-        
-        .font-playfair { font-family: 'Playfair Display', serif; }
-        .cursor-pointer { cursor: pointer; }
-      `}} />
     </footer>
   );
 }

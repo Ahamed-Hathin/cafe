@@ -28,12 +28,11 @@ function ScrollToTop() {
 // Main Layout Wrapper
 function Layout({ children }) {
   const location = useLocation();
-  const isLoginPage = location.pathname === '/login'; // Still might want simple login for users? Actually No, admin is gone.
 
   return (
-    <div className="d-flex flex-column min-vh-100 bg-light-cream">
+    <div className="flex flex-col min-h-screen font-poppins text-dark bg-light-cream">
       <Navbar />
-      <main className="flex-grow-1">
+      <main className="flex-grow">
         {children}
       </main>
       <Footer />
